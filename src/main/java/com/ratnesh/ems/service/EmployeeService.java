@@ -17,4 +17,6 @@ public interface EmployeeService {
     Boolean uploadImage(MultipartFile multipartFile, Employee employee);
     List<Employee> allEmployees();
     Boolean employeeDelete(Employee employee);
+    Employee getEmployeeForUpdate(Employee employee);
+    Boolean employeeUpdate(Employee employee);
 }

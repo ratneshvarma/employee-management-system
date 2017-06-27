@@ -68,4 +68,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Boolean employeeDelete(Employee employee) {
         return employeeDao.deleteEmployee(employee);
     }
+
+    public Employee getEmployeeForUpdate(Employee employee) {
+        return employeeDao.getEmployeeForUpdate(employee);
+    }
+
+    public Boolean employeeUpdate(Employee employee) {
+        return employeeDao.updateEmployee(employee);
+    }
 }

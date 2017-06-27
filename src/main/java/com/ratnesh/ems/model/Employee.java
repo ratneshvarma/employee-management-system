@@ -20,6 +20,16 @@ public class Employee {
     private Long branchId;
     private MultipartFile photo;
 
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    private String imageName;
+
     public String getDoj() {
         return doj;
     }

@@ -83,6 +83,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 preparedStatement.setString(14,photoName);
                 preparedStatement.execute();
 
+
                 return true;
             }
         });
@@ -90,7 +91,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     public List<Employee> getEmployees() {
-//        List<Employee> employeeList =jdbcTemplate.query("select * from employee", new BeanPropertyRowMapper(Employee.class));
 
         return jdbcTemplate.query("select * from employee", new RowMapper<Employee>() {
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -139,6 +139,74 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
         });
     }
+
+    public Employee getEmployeeForUpdate(Employee employee) {
+        return jdbcTemplate.queryForObject("select * from employee where empId=?",new Object[] { employee.getEmpId() }, new RowMapper<Employee>() {
+            public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                Employee employee1 = new Employee();
+                employee1.setEmpId(resultSet.getLong("empId"));
+                employee1.setFirstName(resultSet.getString("firstName"));
+                employee1.setLastName(resultSet.getString("lastName"));
+                employee1.setDob(resultSet.getString("dob"));
+                employee1.setGender(resultSet.getString("gender"));
+                employee1.setAge(resultSet.getInt("age"));
+                employee1.setMaritalStatus(resultSet.getString("maritalStatus"));
+                employee1.setDoj(resultSet.getString("doj"));
+                employee1.setDesignation(resultSet.getString("designation"));
+
+                employee1.setEmail(resultSet.getString("email"));
+                employee1.setMobile(resultSet.getString("mobile"));
+                employee1.setAddress(resultSet.getString("address"));
+                employee1.setBranchId(resultSet.getLong("branchId"));
+                employee1.setImageName(resultSet.getString("photo"));
+                return employee1;
+            }
+        });
+    }
+
+    public Boolean updateEmployee(final Employee employee) {
+        String sql=null;
+        if(!employee.getPhoto().getOriginalFilename().isEmpty())
+            sql ="UPDATE employee SET firstName=?, lastName=?, dob=?, gender=?, age=?, maritalStatus=?, doj=?, designation=?, email=?, mobile=?, address=?, branchId=?,photo=? where empId=?";
+        else
+            sql ="UPDATE employee SET firstName=?, lastName=?, dob=?, gender=?, age=?, maritalStatus=?, doj=?, designation=?, email=?, mobile=?, address=?, branchId=? where empId=?";
+
+        return jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
+            public Boolean doInPreparedStatement(PreparedStatement preparedStatement) throws SQLException, DataAccessException {
+
+                preparedStatement.setString(1,employee.getFirstName());
+                preparedStatement.setString(2,employee.getLastName());
+                preparedStatement.setString(3,employee.getDob());
+                preparedStatement.setString(4,employee.getGender());
+                preparedStatement.setInt(5,employee.getAge());
+                preparedStatement.setString(6,employee.getMaritalStatus());
+                preparedStatement.setString(7,employee.getDoj());
+                preparedStatement.setString(8,employee.getDesignation());
+                preparedStatement.setString(9,employee.getEmail());
+                preparedStatement.setString(10,employee.getMobile());
+                preparedStatement.setString(11,employee.getAddress());
+                preparedStatement.setLong(12,employee.getBranchId());
+
+                String photoName=null;
+                if(!employee.getPhoto().getOriginalFilename().isEmpty()){
+                    String fileExtention[] = employee.getPhoto().getOriginalFilename().split("\\.");
+                    photoName =  employee.getFirstName() +"_"+employee.getEmpId()+ "." + fileExtention[1];
+                }
+               if(!employee.getPhoto().getOriginalFilename().isEmpty()) {
+                   preparedStatement.setString(13, photoName);
+                   preparedStatement.setLong(14,employee.getEmpId());
+               }
+               else{
+                preparedStatement.setLong(13,employee.getEmpId());
+               }
+
+               preparedStatement.execute();
+
+                    return true;
+            }
+        });
+    }
+
 
 
 }

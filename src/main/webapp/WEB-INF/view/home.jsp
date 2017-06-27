@@ -107,7 +107,7 @@
                                         </td>
                                         <td>${employee.firstName} ${employee.lastName}</td>
                                         <td class="hidden-480">${employee.designation}</td>
-                                        <td>Male</td>
+                                        <td>${employee.gender}</td>
 
                                         <td class="hidden-480">
                                                 ${employee.mobile}

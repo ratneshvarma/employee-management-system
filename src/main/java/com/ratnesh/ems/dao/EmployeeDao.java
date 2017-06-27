@@ -15,4 +15,6 @@ public interface EmployeeDao {
     Boolean insertEmployee(Employee employee);
     List<Employee> getEmployees();
     Boolean deleteEmployee(Employee employee);
+    Employee getEmployeeForUpdate(Employee employee);
+    Boolean updateEmployee(Employee employee);
 }
