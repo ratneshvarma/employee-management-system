@@ -9,6 +9,13 @@
     <bean class="com.ratnesh.ems.dao.EmployeeDaoImpl" id="employeeDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
+    <bean class="com.ratnesh.ems.dao.CompanyDaoImpl" id="companyDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+    <bean class="com.ratnesh.ems.dao.DesignationDaoImpl" id="designationDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+
     <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>

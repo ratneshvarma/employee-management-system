@@ -104,7 +104,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="">
+                        <a href="/company/addBranch">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Branch
                         </a>
@@ -113,9 +113,9 @@
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="/company/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            List and Action
+                            View All
                         </a>
 
                         <b class="arrow"></b>
@@ -169,7 +169,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="">
+                        <a href="/designation/addDesignation">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Designation
                         </a>
@@ -178,7 +178,7 @@
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="/designation/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             List and Action
                         </a>

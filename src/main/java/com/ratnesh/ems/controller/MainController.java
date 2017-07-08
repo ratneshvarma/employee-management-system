@@ -13,7 +13,7 @@ import java.util.Locale;
  */
 @Controller
 public class MainController {
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public ModelAndView start(){
 
         return new ModelAndView("index","index",new Login());

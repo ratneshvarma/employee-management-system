@@ -251,11 +251,11 @@
                             5 Messages
                         </li>
 
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="<c:url value="/resource/assets/images/avatars/avatar.png"/>" class="msg-photo" alt="Alex's Avatar" />
+                        </li>                        <li class="dropdown-content">
+                        <ul class="dropdown-menu dropdown-navbar">
+                            <li>
+                                <a href="#" class="clearfix">
+                                    <img src="<c:url value="/resource/assets/images/avatars/avatar.png"/>" class="msg-photo" alt="Alex's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -267,12 +267,12 @@
 														<span>a moment ago</span>
 													</span>
 												</span>
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
 
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="<c:url value="/resource/assets/images/avatars/avatar3.png"/>" class="msg-photo" alt="Susan's Avatar" />
+                            <li>
+                                <a href="#" class="clearfix">
+                                    <img src="<c:url value="/resource/assets/images/avatars/avatar3.png"/>" class="msg-photo" alt="Susan's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -284,12 +284,12 @@
 														<span>20 minutes ago</span>
 													</span>
 												</span>
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
 
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="<c:url value="/resource/assets/images/avatars/avatar4.png"/>" class="msg-photo" alt="Bob's Avatar" />
+                            <li>
+                                <a href="#" class="clearfix">
+                                    <img src="<c:url value="/resource/assets/images/avatars/avatar4.png"/>" class="msg-photo" alt="Bob's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -301,12 +301,12 @@
 														<span>3:15 pm</span>
 													</span>
 												</span>
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
 
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="<c:url value="/resource/assets/images/avatars/avatar2.png"/>" class="msg-photo" alt="Kate's Avatar" />
+                            <li>
+                                <a href="#" class="clearfix">
+                                    <img src="<c:url value="/resource/assets/images/avatars/avatar2.png"/>" class="msg-photo" alt="Kate's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -318,12 +318,12 @@
 														<span>1:33 pm</span>
 													</span>
 												</span>
-                                    </a>
-                                </li>
+                                </a>
+                            </li>
 
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="<c:url value="/resource/assets/images/avatars/avatar5.png"/>" class="msg-photo" alt="Fred's Avatar" />
+                            <li>
+                                <a href="#" class="clearfix">
+                                    <img src="<c:url value="/resource/assets/images/avatars/avatar5.png"/>" class="msg-photo" alt="Fred's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -335,10 +335,10 @@
 														<span>10:09 am</span>
 													</span>
 												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                </a>
+                            </li>
+                        </ul>
+
 
                         <li class="dropdown-footer">
                             <a href="inbox.html">
