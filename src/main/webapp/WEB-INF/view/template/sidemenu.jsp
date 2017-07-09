@@ -50,6 +50,21 @@
                 <b class="arrow"></b>
             </li>
 
+            <%--<% String url_requested =  request.getAttribute("javax.servlet.forward.request_uri").toString();--%>
+
+                <%--String nav_select_flag = null;--%>
+                <%--String nav_select_open= null;--%>
+                <%--System.out.println(url_requested);--%>
+                <%--if(url_requested.equals("/employee/addNewEmployee")){--%>
+                    <%--System.out.println("hello");--%>
+                    <%--nav_select_flag = "nav-show";--%>
+                    <%--nav_select_open= "open";--%>
+
+                <%--}--%>
+                <%--System.out.println(nav_select_flag);--%>
+            <%--%>--%>
+
+
             <li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
@@ -62,6 +77,9 @@
 
                 <b class="arrow"></b>
 
+
+
+
                 <ul class="submenu">
                     <li class="">
                         <a href="/employee/addNewEmployee">
@@ -72,9 +90,9 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="">
+                        <a href="/employee/home">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            List and Action
+                            View All
                         </a>
 
                         <b class="arrow"></b>
@@ -99,6 +117,7 @@
 
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
+<%--<%= request.getRequestURL()+"?"%>--%>
 
                 <b class="arrow"></b>
 
@@ -136,18 +155,18 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="">
+                        <a href="/salary/addSalary">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            List and Action
+                           Add Salary
                         </a>
 
                         <b class="arrow"></b>
                     </li>
 
                     <li class="">
-                        <a href="">
+                        <a href="/salary/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Menu2
+                            View All
                         </a>
 
                         <b class="arrow"></b>
@@ -180,7 +199,7 @@
                     <li class="">
                         <a href="/designation/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            List and Action
+                            View All
                         </a>
 
                         <b class="arrow"></b>

@@ -27,7 +27,7 @@ DesignationServiceImpl designationService;
     @RequestMapping(value = "/addDesignation")
     public ModelAndView branchPage(){
 
-        return new ModelAndView("addDesignation","designation", new Designation());
+        return new ModelAndView("designation/create","designation", new Designation());
     }
 
     @RequestMapping(value = "/saveDesignation")
@@ -49,7 +49,7 @@ DesignationServiceImpl designationService;
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
         List designationList = designationService.getAllDesignations();
-        return new ModelAndView("designations","designationList",designationList);
+        return new ModelAndView("designation/index","designationList",designationList);
     }
 
 
@@ -60,7 +60,7 @@ DesignationServiceImpl designationService;
         designation.setDesignationId(designationId);
         designation= designationService.designationForUpdate(designation);
 
-        ModelAndView modelAndView = new ModelAndView("updateDesignation","designation", designation);
+        ModelAndView modelAndView = new ModelAndView("designation/edit","designation", designation);
 
         return modelAndView;
     }

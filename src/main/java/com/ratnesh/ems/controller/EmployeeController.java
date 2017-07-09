@@ -27,12 +27,12 @@ public class EmployeeController {
     @RequestMapping("/login")
     public ModelAndView test(){
         List employeeList = employeeService.allEmployees();
-        return new ModelAndView("home","employeeList",employeeList);
+        return new ModelAndView("employee/index","employeeList",employeeList);
     }
     @RequestMapping("/home")
     public ModelAndView dashboard(){
         List employeeList = employeeService.allEmployees();
-        return new ModelAndView("home","employeeList",employeeList);
+        return new ModelAndView("employee/index","employeeList",employeeList);
     }
 
     @RequestMapping("/addNewEmployee")
@@ -50,7 +50,7 @@ public class EmployeeController {
         Map<Integer, String> branchList = employeeService.branchList();
         Map<Integer, String> designationList = employeeService.designationList();
 
-        ModelAndView modelAndView = new ModelAndView("newEmployee","employee", new Employee());
+        ModelAndView modelAndView = new ModelAndView("employee/create","employee", new Employee());
         modelAndView.addObject("genderList", genderList);
         modelAndView.addObject("maritalList",maritalList);
         modelAndView.addObject("branchList",branchList);
@@ -71,9 +71,9 @@ public class EmployeeController {
 //        else
 //            message_part="Employee picture not stored.";
 
-        boolean insterted  = employeeService.employeeInsert(employee);
+        boolean inserted  = employeeService.employeeInsert(employee);
 
-        if(insterted)
+        if(inserted)
             message = "Employee successfully inserted.";
 
         else
@@ -109,7 +109,7 @@ public class EmployeeController {
         employee.setEmpId(empId);
         employee = employeeService.getEmployeeForUpdate(employee);
 
-        ModelAndView modelAndView = new ModelAndView("updateEmployee","employee", employee);
+        ModelAndView modelAndView = new ModelAndView("employee/edit","employee", employee);
         modelAndView.addObject("genderList", genderList);
         modelAndView.addObject("maritalList",maritalList);
         modelAndView.addObject("branchList",branchList);

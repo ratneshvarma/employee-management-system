@@ -43,7 +43,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             public Map extractData(ResultSet resultSet) throws SQLException, DataAccessException {
                 Map<Integer, String> designationList = new HashMap<Integer, String>();
                 while(resultSet.next()){
-                    designationList.put(resultSet.getInt("designationId"), resultSet.getString("name") );
+                    designationList.put(resultSet.getInt("designationId"), resultSet.getString("designation") );
                 }
                 return designationList;
             }
@@ -104,11 +104,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
             employee.setMaritalStatus(resultSet.getString("maritalStatus"));
             employee.setDoj(resultSet.getString("doj"));
             employee.setDesignation(
-                jdbcTemplate.query("select name from designation where designationId="+resultSet.getString("designation"), new ResultSetExtractor<String>() {
+                jdbcTemplate.query("select designation from designation where designationId="+resultSet.getString("designation"), new ResultSetExtractor<String>() {
                     public String extractData(ResultSet result) throws SQLException, DataAccessException {
                        String DesignationName =null;
                         while(result.next()){
-                            DesignationName=result.getString("name");
+                            DesignationName=result.getString("designation");
                         }
                         return DesignationName;
                     }

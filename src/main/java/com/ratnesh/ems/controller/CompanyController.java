@@ -27,7 +27,7 @@ CompanyServiceImpl companyService;
     @RequestMapping(value = "/addBranch")
     public ModelAndView branchPage(){
 
-        return new ModelAndView("addBranch","branch", new Branch());
+        return new ModelAndView("company/create","branch", new Branch());
     }
 
     @RequestMapping(value = "/saveBranch")
@@ -49,7 +49,7 @@ CompanyServiceImpl companyService;
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
         List branchList = companyService.getAllBranches();
-        return new ModelAndView("branches","branchList",branchList);
+        return new ModelAndView("company/index","branchList",branchList);
     }
 
 
@@ -60,7 +60,7 @@ CompanyServiceImpl companyService;
         branch.setBranchId(branchId);
         branch= companyService.branchForUpdate(branch);
 
-        ModelAndView modelAndView = new ModelAndView("updateBranch","branch", branch);
+        ModelAndView modelAndView = new ModelAndView("company/edit","branch", branch);
 
         return modelAndView;
     }
