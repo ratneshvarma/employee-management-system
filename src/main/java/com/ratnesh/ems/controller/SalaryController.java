@@ -3,6 +3,8 @@ package com.ratnesh.ems.controller;
 import com.ratnesh.ems.model.Designation;
 import com.ratnesh.ems.model.Salary;
 import com.ratnesh.ems.service.DesignationServiceImpl;
+import com.ratnesh.ems.service.SalaryServiceImpl;
+import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ratnesh on 8/7/17.
@@ -21,71 +24,73 @@ import java.util.List;
 @RequestMapping("/salary")
 public class SalaryController {
 @Autowired
-DesignationServiceImpl designationService;
+SalaryServiceImpl salaryService;
 
     @RequestMapping(value = "/addSalary")
-    public ModelAndView branchPage(){
+    public ModelAndView salaryPage(){
 
-        return new ModelAndView("salary/create","salary", new Salary());
+        Map<Integer, String> employeeList = salaryService.allEmployeeList();
+        ModelAndView modelAndView = new ModelAndView("salary/create","salary", new Salary());
+        modelAndView.addObject("employeeList", employeeList);
+
+        return modelAndView;
     }
 
     @RequestMapping(value = "/saveSalary")
-    public ModelAndView branchSave(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
+    public ModelAndView salarySave(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
+        String message=null;
+        boolean inserted  = salaryService.addSalary(salary);
 
-//        String message=null;
-//        boolean insterted  = designationService.addDesignation(designation);
-//
-//        if(insterted)
-//            message = "Designation successfully added.";
-//
-//        else
-//            message = "Insertion failed, please retry.";
-//
-//        redirectAttributes.addFlashAttribute("message",message);
-        return new ModelAndView("redirect:/salary/addSalary");
+        if(inserted)
+            message = "Salary successfully added.";
+
+        else
+            message = "Insertion failed, please retry.";
+
+        redirectAttributes.addFlashAttribute("message",message);
+       return new ModelAndView("redirect:/salary/addSalary");
     }
 
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
-//        List designationList = designationService.getAllDesignations();
-//        return new ModelAndView("salary/index","salaryList",designationList);
-        return null;
+        List salaryList = salaryService.getAllSalaries();
+        return new ModelAndView("salary/index","salaryList",salaryList);
+
     }
 
 
 
     @RequestMapping("/update")
-    public ModelAndView update(@RequestParam("id") long designationId){
-//        Designation designation= new Designation();
-//        designation.setDesignationId(designationId);
-//        designation= designationService.designationForUpdate(designation);
-//
-//        ModelAndView modelAndView = new ModelAndView("designation/edit","designation", designation);
-//
-//        return modelAndView;
-        return null;
+    public ModelAndView update(@RequestParam("id") long salaryId){
+        Salary salary= new Salary();
+        salary.setSalaryId(salaryId);
+        salary= salaryService.salaryForUpdate(salary);
+        Map<Integer, String> employeeList = salaryService.allEmployeeList();
+        ModelAndView modelAndView = new ModelAndView("salary/edit","salary", salary);
+        modelAndView.addObject("employeeList",employeeList);
+        return modelAndView;
     }
 
     @RequestMapping(value = "/updateSalary",method= RequestMethod.POST)
-    public ModelAndView updateEmployee(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
+    public ModelAndView updateSalary(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
 
-//        String message = null;
-//        boolean updated  = designationService.editDesignation(designation);
-//        if(updated)
-//            message = "Designation updated.";
-//
-//        else
-//            message = "Updation failed, please retry.";
-//
-//        redirectAttributes.addFlashAttribute("message",message);
+        String message = null;
+        boolean updated  = salaryService.editSalary(salary);
+        if(updated)
+            message = "Salary updated.";
+
+        else
+            message = "Updation failed, please retry.";
+
+        redirectAttributes.addFlashAttribute("message",message);
         return new ModelAndView("redirect:/salary/viewAll");
     }
     @RequestMapping("/delete")
     public ModelAndView delete(@RequestParam("id") long salaryId, final RedirectAttributes redirectAttributes){
-//        Designation designation = new Designation();
-//        designation.setDesignationId(designationId);
-//        designationService.removeDesignation(designation);
-//        redirectAttributes.addFlashAttribute("message","Record deleted.");
+        Salary salary = new Salary();
+        salary.setSalaryId(salaryId);
+        salaryService.removeSalary(salary);
+        redirectAttributes.addFlashAttribute("message","Record deleted.");
         return new ModelAndView("redirect:/salary/viewAll");
     }
 }

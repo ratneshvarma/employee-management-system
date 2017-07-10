@@ -66,14 +66,11 @@
                                     <thead>
                                     <tr>
                                         <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
+                                           Employee Id
                                         </th>
-                                        <th>Designation ID</th>
-                                        <th>Designation</th>
-                                        <th class="hidden-480">Description</th>
+                                        <th>Employee Name</th>
+                                        <th>Salary</th>
+                                        <th class="hidden-480">Payment Month</th>
 
                                         <th></th>
                                     </tr>
@@ -83,33 +80,30 @@
 
 
 
-                                    <c:forEach items="${designationList}" var="designation">
+                                    <c:forEach items="${salaryList}" var="salary">
 
 
 
                                         <tr>
                                             <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
+                                                    ${salary.empId}
                                             </td>
 
                                             <td>
-                                                <a href="#">${designation.designationId}</a>
+                                                <a href="#">${salary.employeeName}</a>
                                             </td>
-                                            <td> ${designation.designation}</td>
-                                            <td class="hidden-480">${designation.description}</td>
+                                            <td> ${salary.salary}</td>
+                                            <td class="hidden-480">${salary.paymentDate}</td>
 
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="green" href="/designation/update?id=${designation.designationId}">
+                                                    <a class="green" href="/salary/update?id=${salary.salaryId}">
                                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                     </a>
                                                     <i ></i>
 
-                                                    <a class="red" href="/designation/delete?id=${designation.designationId}">
+                                                    <a class="red" href="/salary/delete?id=${salary.salaryId}">
                                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                     </a>
                                                 </div>

@@ -6,9 +6,28 @@ package com.ratnesh.ems.model;
 public class Salary {
 
     private Long salaryId;
-    private Long employeeId;
+    private Long empId;
     private Long salary;
     private String description;
+    private String paymentDate;
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    private String employeeName;
+
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
+    }
 
     public Long getSalaryId() {
         return salaryId;
@@ -18,12 +37,12 @@ public class Salary {
         this.salaryId = salaryId;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getEmpId() {
+        return empId;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmpId(Long empId) {
+        this.empId = empId;
     }
 
     public Long getSalary() {

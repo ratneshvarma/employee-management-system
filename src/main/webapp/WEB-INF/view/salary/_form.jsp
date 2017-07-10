@@ -1,11 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="employeeId"> Employee </label>
+    <label class="col-sm-3 control-label no-padding-right" for="empId"> Employee </label>
 
     <div class="col-sm-9">
         <form:hidden path="salaryId" />
-        <form:input path="employeeId" type="text"  id="employeeId"  />
+        <%--<form:input path="employeeId" type="text"  id="employeeId"  />--%>
+        <form:select path="empId" id="empId">
+            <form:options items="${employeeList}"/>
+        </form:select>
+
     </div>
 </div>
 <div class="form-group">
@@ -15,6 +19,15 @@
         <form:input path="salary" id="salary"/>
     </div>
 </div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right" for="payDate"> Payment Date </label>
+
+    <div class="col-sm-9">
+        <form:input path="paymentDate" type="text" id="payDate"  />
+    </div>
+</div>
+
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="description"> Description </label>
 
