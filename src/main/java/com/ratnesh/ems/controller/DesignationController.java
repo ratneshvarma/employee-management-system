@@ -1,10 +1,9 @@
 package com.ratnesh.ems.controller;
 
-import com.ratnesh.ems.model.Branch;
 import com.ratnesh.ems.model.Designation;
-import com.ratnesh.ems.service.CompanyServiceImpl;
-import com.ratnesh.ems.service.DesignationServiceImpl;
+import com.ratnesh.ems.service.DesignationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,20 +20,24 @@ import java.util.List;
 @Controller
 @RequestMapping("/designation")
 public class DesignationController {
-@Autowired
-DesignationServiceImpl designationService;
+    private DesignationService designationService;
+    @Autowired(required=true)
+    @Qualifier(value="designationService")
+    public void setDesignationService(DesignationService designationService) {
+        this.designationService = designationService;
+    }
 
     @RequestMapping(value = "/addDesignation")
-    public ModelAndView branchPage(){
+    public ModelAndView designationPage(){
 
         return new ModelAndView("designation/create","designation", new Designation());
     }
 
     @RequestMapping(value = "/saveDesignation")
-    public ModelAndView branchSave(@ModelAttribute("designation") Designation designation, RedirectAttributes redirectAttributes){
-
+    public ModelAndView designationSave(@ModelAttribute("designation") Designation designation, RedirectAttributes redirectAttributes){
+        System.out.println("Service: "+this.designationService);
         String message=null;
-        boolean insterted  = designationService.addDesignation(designation);
+        boolean insterted  =this.designationService.addDesignation(designation);
 
         if(insterted)
             message = "Designation successfully added.";
@@ -48,7 +51,7 @@ DesignationServiceImpl designationService;
 
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
-        List designationList = designationService.getAllDesignations();
+        List designationList = this.designationService.getAllDesignations();
         return new ModelAndView("designation/index","designationList",designationList);
     }
 
@@ -58,7 +61,7 @@ DesignationServiceImpl designationService;
     public ModelAndView update(@RequestParam("id") long designationId){
         Designation designation= new Designation();
         designation.setDesignationId(designationId);
-        designation= designationService.designationForUpdate(designation);
+        designation= this.designationService.designationForUpdate(designation);
 
         ModelAndView modelAndView = new ModelAndView("designation/edit","designation", designation);
 
@@ -66,10 +69,10 @@ DesignationServiceImpl designationService;
     }
 
     @RequestMapping(value = "/updateDesignation",method= RequestMethod.POST)
-    public ModelAndView updateEmployee(@ModelAttribute("designation") Designation designation, RedirectAttributes redirectAttributes){
+    public ModelAndView updateDesignation(@ModelAttribute("designation") Designation designation, RedirectAttributes redirectAttributes){
 
         String message = null;
-        boolean updated  = designationService.editDesignation(designation);
+        boolean updated  = this.designationService.editDesignation(designation);
         if(updated)
             message = "Designation updated.";
 
@@ -83,7 +86,7 @@ DesignationServiceImpl designationService;
     public ModelAndView delete(@RequestParam("id") long designationId, final RedirectAttributes redirectAttributes){
         Designation designation = new Designation();
         designation.setDesignationId(designationId);
-        designationService.removeDesignation(designation);
+        this.designationService.removeDesignation(designation);
         redirectAttributes.addFlashAttribute("message","Record deleted.");
         return new ModelAndView("redirect:/designation/viewAll");
     }

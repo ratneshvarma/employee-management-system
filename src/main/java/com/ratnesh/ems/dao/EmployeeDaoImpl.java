@@ -1,6 +1,7 @@
 package com.ratnesh.ems.dao;
 
 import com.ratnesh.ems.model.Employee;
+import org.hibernate.SessionFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.*;
 
@@ -15,6 +16,12 @@ import java.util.Map;
  * Created by ratnesh on 31/5/17.
  */
 public class EmployeeDaoImpl implements EmployeeDao {
+    private SessionFactory sessionFactory;
+
+    public void setSessionFactory(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
+    }
+
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

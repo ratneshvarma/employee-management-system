@@ -1,9 +1,11 @@
 package com.ratnesh.ems.service;
 
+import com.ratnesh.ems.dao.CompanyDao;
 import com.ratnesh.ems.dao.CompanyDaoImpl;
 import com.ratnesh.ems.model.Branch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,25 +14,30 @@ import java.util.List;
  */
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    @Autowired
-   CompanyDaoImpl companyDao;
+
+    public void setCompanyDao(CompanyDao companyDao) {
+        this.companyDao = companyDao;
+    }
+
+    private CompanyDao companyDao;
+    @Transactional
     public Boolean addBranch(Branch branch) {
-        return companyDao.insertBranch(branch);
+        return this.companyDao.insertBranch(branch);
     }
-
+    @Transactional
     public List<Branch> getAllBranches() {
-        return companyDao.getBranches();
+        return this.companyDao.getBranches();
     }
-
+    @Transactional
     public Boolean removeBranch(Branch branch) {
-        return companyDao.deleteBranch(branch);
+        return this.companyDao.deleteBranch(branch);
     }
-
+    @Transactional
     public Boolean editBranch(Branch branch) {
-        return companyDao.updateBranch(branch);
+        return this.companyDao.updateBranch(branch);
     }
-
+    @Transactional
     public Branch branchForUpdate(Branch branch) {
-        return companyDao.getBranchForUpdate(branch);
+        return this.companyDao.getBranchForUpdate(branch);
     }
 }

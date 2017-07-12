@@ -5,7 +5,7 @@
 
     <div class="col-sm-9">
         <form:hidden path="designationId" />
-        <form:input path="designation" type="text"  id="designation" value="${designation.designation}"  />
+        <form:input path="designation" type="text"  id="designation" />
     </div>
 </div>
 

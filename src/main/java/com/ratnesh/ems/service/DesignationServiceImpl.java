@@ -1,9 +1,11 @@
 package com.ratnesh.ems.service;
 
+import com.ratnesh.ems.dao.DesignationDao;
 import com.ratnesh.ems.dao.DesignationDaoImpl;
 import com.ratnesh.ems.model.Designation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,24 +14,29 @@ import java.util.List;
  */
 @Service
 public class DesignationServiceImpl  implements  DesignationService{
-    @Autowired
-    DesignationDaoImpl designationDao;
+
+    private DesignationDao designationDao;
+    public void setDesignationDao(DesignationDao designationDao) {
+        this.designationDao = designationDao;
+    }
+
+    @Transactional
     public Boolean addDesignation(Designation designation) {
         return designationDao.insertDesignation(designation);
     }
-
+    @Transactional
     public List<Designation> getAllDesignations() {
         return designationDao.getDesignations();
     }
-
+    @Transactional
     public Boolean removeDesignation(Designation designation) {
         return designationDao.deleteDesignation(designation);
     }
-
+    @Transactional
     public Boolean editDesignation(Designation designation) {
         return designationDao.updateDesignation(designation);
     }
-
+    @Transactional
     public Designation designationForUpdate(Designation designation) {
         return designationDao.getDesignationForUpdate(designation);
     }

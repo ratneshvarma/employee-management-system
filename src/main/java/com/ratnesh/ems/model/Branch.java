@@ -1,10 +1,16 @@
 package com.ratnesh.ems.model;
 
+import javax.persistence.*;
+
 /**
  * Created by ratnesh on 8/7/17.
  */
+@Entity
+@Table(name = "branch")
 public class Branch {
-
+    @Id
+    @Column(name = "branchId")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long branchId;
     private String name;
     private String address;

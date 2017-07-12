@@ -1,101 +1,56 @@
 package com.ratnesh.ems.dao;
 
-import com.ratnesh.ems.model.Branch;
 import com.ratnesh.ems.model.Designation;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.RowMapper;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
  * Created by ratnesh on 8/7/17.
  */
+@Repository
 public class DesignationDaoImpl implements  DesignationDao{
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private SessionFactory sessionFactory;
 
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
+    public void setSessionFactory(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
     }
-
-    private JdbcTemplate jdbcTemplate;
 
     public Boolean insertDesignation(final Designation designation) {
-        String sql ="INSERT INTO designation (designation, description) VALUES (?,?)";
-        return jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
-            public Boolean doInPreparedStatement(PreparedStatement preparedStatement) throws SQLException, DataAccessException {
-
-                preparedStatement.setString(1,designation.getDesignation());
-                preparedStatement.setString(2,designation.getDescription());
-                preparedStatement.execute();
-
-
-                return true;
-            }
-        });
-
+        Session session=this.sessionFactory.getCurrentSession();
+        session.save(designation);
+        return true;
     }
-
     public List<Designation> getDesignations() {
-        return jdbcTemplate.query("select * from designation", new RowMapper<Designation>() {
-            public Designation mapRow(ResultSet resultSet, int i) throws SQLException {
-                Designation designation = new Designation();
-                designation.setDesignationId(resultSet.getLong("designationId"));
-                designation.setDesignation(resultSet.getString("designation"));
-                designation.setDescription(resultSet.getString("description"));;
-                return designation;
-            }
-        });
+        Session session = this.sessionFactory.getCurrentSession();
+        List<Designation>designationList = session.createQuery("from Designation").list();
+//        for(Designation designation : designationList){
+//            System.out.println("Person List::"+designation);
+//        }
+
+        return designationList;
 
     }
 
-    public Boolean deleteDesignation(final Designation designation) {
-        String sql ="DELETE from designation where designationId=?";
-
-        return jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
-            public Boolean doInPreparedStatement(PreparedStatement preparedStatement) throws SQLException, DataAccessException {
-                preparedStatement.setLong(1,designation.getDesignationId());
-                boolean test=preparedStatement.execute();
-                if (test)
-                    return true;
-                else
-                    return false;
-            }
-        });
+    public Boolean deleteDesignation(Designation designation) {
+        Session session=this.sessionFactory.getCurrentSession();
+        designation= (Designation) session.load(Designation.class, designation.getDesignationId());
+        if(designation!=null)
+        session.delete(designation);
+        return true;
     }
 
-    public Boolean updateDesignation(final Designation designation) {
-        String sql ="UPDATE designation SET designation=?, description=? where designationId=?";
-
-        return jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
-            public Boolean doInPreparedStatement(PreparedStatement preparedStatement) throws SQLException, DataAccessException {
-
-                preparedStatement.setString(1,designation.getDesignation());
-                preparedStatement.setString(2,designation.getDescription());
-                preparedStatement.setLong(3,designation.getDesignationId());
-                preparedStatement.execute();
-
-                return true;
-            }
-        });
+    public Boolean updateDesignation(Designation designation) {
+        Session session=this.sessionFactory.getCurrentSession();
+        session.update(designation);
+        return true;
     }
 
     public Designation getDesignationForUpdate(Designation designation) {
-        return jdbcTemplate.queryForObject("select * from designation where designationId=?",new Object[] { designation.getDesignationId() }, new RowMapper<Designation>() {
-            public Designation mapRow(ResultSet resultSet, int i) throws SQLException {
-                Designation designation1 = new Designation();
-                designation1.setDesignationId(resultSet.getLong("designationId"));
-                designation1.setDesignation(resultSet.getString("designation"));
-                designation1.setDescription(resultSet.getString("description"));
-                return designation1;
-            }
-        });
+        Session session=this.sessionFactory.getCurrentSession();
+        Designation designation1= (Designation) session.get(Designation.class, designation.getDesignationId());
+       return  designation1;
     }
 
 }

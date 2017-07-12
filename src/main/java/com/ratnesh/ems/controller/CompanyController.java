@@ -1,8 +1,9 @@
 package com.ratnesh.ems.controller;
 
 import com.ratnesh.ems.model.Branch;
-import com.ratnesh.ems.service.CompanyServiceImpl;
+import com.ratnesh.ems.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by ratnesh on 8/7/17.
@@ -21,8 +19,14 @@ import java.util.Map;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-@Autowired
-CompanyServiceImpl companyService;
+    @Autowired(required=true)
+    @Qualifier(value="companyService")
+
+    public void setCompanyService(CompanyService companyService) {
+        this.companyService = companyService;
+    }
+
+    private CompanyService companyService;
 
     @RequestMapping(value = "/addBranch")
     public ModelAndView branchPage(){
