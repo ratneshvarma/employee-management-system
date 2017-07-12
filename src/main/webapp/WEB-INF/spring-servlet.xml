@@ -2,9 +2,11 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <bean class="com.ratnesh.ems.dao.EmployeeDaoImpl" id="employeeDao">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
@@ -30,6 +32,70 @@
         <property name="password" value="root"/>
 
     </bean>
+
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="hibernate4AnnotatedSessionFactory"
+                class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>com.ratnesh.ems.model.Person</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="personDao" class="com.ratnesh.ems.dao.PersonDaoImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="personService" class="com.ratnesh.ems.service.PersonServiceImpl">
+        <property name="personDAO" ref="personDao"></property>
+    </bean>
+
+
+
+
+
+
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="packagesToScan">-->
+            <!--<list>-->
+                <!--<value>com.ratnesh.ems.model</value>-->
+            <!--</list>-->
+        <!--</property>-->
+        <!--<property name="hibernateProperties">-->
+            <!--<props>-->
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
+                <!--<prop key="hibernate.show_sql">false</prop>-->
+                <!--<prop key="hibernate.format_sql">false</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;jdbc.driverClassName = com.mysql.jdbc.Driver&ndash;&gt;-->
+    <!--&lt;!&ndash;jdbc.url = jdbc:mysql://localhost:3306/websystique&ndash;&gt;-->
+    <!--&lt;!&ndash;jdbc.username = myuser&ndash;&gt;-->
+    <!--&lt;!&ndash;jdbc.password = mypassword&ndash;&gt;-->
+    <!--&lt;!&ndash;hibernate.dialect = org.hibernate.dialect.MySQLDialect&ndash;&gt;-->
+    <!--&lt;!&ndash;hibernate.show_sql = false&ndash;&gt;-->
+    <!--&lt;!&ndash;hibernate.format_sql = false&ndash;&gt;-->
+    <!--<bean id="transactionManager"  class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
+        <!--<property name="sessionFactory" ref="sessionFactory" />-->
+    <!--</bean>-->
+
+    <!--<bean id="persistenceExceptionTranslationPostProcessor"  class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>-->
+
+
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
