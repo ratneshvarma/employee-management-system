@@ -13,13 +13,14 @@ public class Salary {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long salaryId;
-    @OneToMany
-    @ForeignKey(name = "fk_employee")
-    private Employee empId;
-//    private Long empId;
+//    @OneToOne
+////    @ForeignKey(name = "fk_employee")
+//    private Employee empId;
+    private Long empId;
     private Long salary;
     private String description;
     private String paymentDate;
+    @Transient
     private String employeeName;
 
     public String getEmployeeName() {
@@ -46,21 +47,21 @@ public class Salary {
         this.salaryId = salaryId;
     }
 
-    public Employee getEmpId() {
-        return empId;
-    }
-
-    public void setEmpId(Employee empId) {
-        this.empId = empId;
-    }
-
-//    public Long getEmpId() {
+//    public Employee getEmpId() {
 //        return empId;
 //    }
 //
-//    public void setEmpId(Long empId) {
+//    public void setEmpId(Employee empId) {
 //        this.empId = empId;
 //    }
+
+    public Long getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(Long empId) {
+        this.empId = empId;
+    }
 
     public Long getSalary() {
         return salary;

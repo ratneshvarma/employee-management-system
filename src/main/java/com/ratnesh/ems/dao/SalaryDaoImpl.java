@@ -25,7 +25,7 @@ public class SalaryDaoImpl implements SalaryDao {
        List<Employee> employees=  session.createQuery("from Employee").list();
         Map<Integer, String> employeeList = new HashMap<Integer, String>();
         for (Employee emp: employees){
-            employeeList.put(emp.getEmpId().intValue(), emp.getFirstName()+" "+ emp.getLastName());
+            employeeList.put(emp.getEmpId().intValue()," ("+emp.getEmpId()+") "+ emp.getFirstName()+" "+ emp.getLastName());
         }
         System.out.println("Employee List: "+ employeeList);
         return employeeList;

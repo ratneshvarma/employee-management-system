@@ -8,10 +8,6 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <context:component-scan base-package="com.ratnesh.ems.*" />
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resource/**" location="/resource/"/>
-    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
 
 <!--Designation Dao and Servive wiring-->
     <bean class="com.ratnesh.ems.dao.DesignationDaoImpl" id="designationDao">
@@ -95,4 +91,17 @@
             <value>.jsp</value>
         </property>
     </bean>
+    <!--<context:component-scan base-package="com.ratnesh.ems.service" />-->
+    <!--<context:component-scan base-package="com.ratnesh.ems.controller" />-->
+    <!--<context:component-scan base-package="com.ratnesh.ems.dao" />-->
+    <!--<context:component-scan base-package="com.ratnesh.ems.model" />-->
+    <context:component-scan base-package="com.ratnesh.ems.*"/>
+    <!--<context:component-scan base-package="com.ratnesh.ems">-->
+    <!--<context:include-filter type="aspectj" expression="com.ratnesh.ems.*" />-->
+    <!--</context:component-scan>-->
+
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/resource/**" location="/resource/"/>
+    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
+
 </beans>

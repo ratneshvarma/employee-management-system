@@ -13,15 +13,25 @@ import javax.persistence.*;
 @Table(name = "employee")
 public class Employee {
 
-    private String  firstName,lastName,email,gender,
-                    maritalStatus,dob,designation,address;
-
-
-
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String gender;
+    private String maritalStatus;
+    private String dob;
+    private String designation;
+    private String address;
     private String mobile;
     private int age;
     private Long branchId;
+    @Transient
     private MultipartFile photo;
+    @Column(name = "photo")
+    private String imageName;
+    private String doj;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long empId;
 
     public String getImageName() {
         return imageName;
@@ -31,8 +41,6 @@ public class Employee {
         this.imageName = imageName;
     }
 
-    private String imageName;
-
     public String getDoj() {
         return doj;
     }
@@ -41,7 +49,6 @@ public class Employee {
         this.doj = doj;
     }
 
-    private String doj;
 
     public MultipartFile getPhoto() {
         return photo;
@@ -60,10 +67,6 @@ public class Employee {
     public void setEmpId(Long empId) {
         this.empId = empId;
     }
-@Id
-@GeneratedValue(strategy= GenerationType.IDENTITY)
-
-    private Long empId;
 
 
     public Long getBranchId() {
