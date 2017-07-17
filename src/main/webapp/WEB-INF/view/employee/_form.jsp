@@ -1,12 +1,12 @@
 
-<div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="empId"> Employee Id </label>
+<%--<div class="form-group">--%>
+    <%--<label class="col-sm-3 control-label no-padding-right" for="empId"> Employee Id </label>--%>
 
-    <div class="col-sm-9">
-        <form:input path="empId" readonly="true" type="text" id="empId" value="${maxEployeeId}" />
+    <%--<div class="col-sm-9">--%>
+        <%--&lt;%&ndash;<form:input path="empId" readonly="true" type="text" id="empId"  />&ndash;%&gt;--%>
 
-    </div>
-</div>
+    <%--</div>--%>
+<%--</div>--%>
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="firstName"> First Name </label>
 

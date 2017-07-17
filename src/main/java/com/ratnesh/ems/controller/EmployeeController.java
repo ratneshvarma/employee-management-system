@@ -1,8 +1,10 @@
 package com.ratnesh.ems.controller;
 
 import com.ratnesh.ems.model.Employee;
+import com.ratnesh.ems.service.EmployeeService;
 import com.ratnesh.ems.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +22,14 @@ import java.util.*;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-    @Autowired
-    EmployeeServiceImpl employeeService;
-    @Autowired
-    Employee employee;
+    @Autowired(required = true)
+    @Qualifier(value="employeeService")
+    private EmployeeService employeeService;
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+//    @Autowired
+//    Employee employee;
     @RequestMapping("/login")
     public ModelAndView test(){
         List employeeList = employeeService.allEmployees();
@@ -55,7 +61,7 @@ public class EmployeeController {
         modelAndView.addObject("maritalList",maritalList);
         modelAndView.addObject("branchList",branchList);
         modelAndView.addObject("designationList", designationList);
-        modelAndView.addObject("maxEployeeId", employeeService.maxEmployeeId()+1 );
+//        modelAndView.addObject("maxEployeeId", employeeService.maxEmployeeId()+1 );
 
         return modelAndView;
     }

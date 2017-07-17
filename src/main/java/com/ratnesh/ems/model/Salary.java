@@ -1,15 +1,26 @@
 package com.ratnesh.ems.model;
 
+import org.hibernate.annotations.ForeignKey;
+
+import javax.persistence.*;
+
 /**
  * Created by ratnesh on 10/7/17.
  */
+@Entity
+@Table(name = "salary")
 public class Salary {
-
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long salaryId;
-    private Long empId;
+    @OneToMany
+    @ForeignKey(name = "fk_employee")
+    private Employee empId;
+//    private Long empId;
     private Long salary;
     private String description;
     private String paymentDate;
+    private String employeeName;
 
     public String getEmployeeName() {
         return employeeName;
@@ -18,8 +29,6 @@ public class Salary {
     public void setEmployeeName(String employeeName) {
         this.employeeName = employeeName;
     }
-
-    private String employeeName;
 
     public String getPaymentDate() {
         return paymentDate;
@@ -37,13 +46,21 @@ public class Salary {
         this.salaryId = salaryId;
     }
 
-    public Long getEmpId() {
+    public Employee getEmpId() {
         return empId;
     }
 
-    public void setEmpId(Long empId) {
+    public void setEmpId(Employee empId) {
         this.empId = empId;
     }
+
+//    public Long getEmpId() {
+//        return empId;
+//    }
+//
+//    public void setEmpId(Long empId) {
+//        this.empId = empId;
+//    }
 
     public Long getSalary() {
         return salary;

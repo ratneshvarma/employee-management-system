@@ -11,7 +11,7 @@ import java.util.Map;
 public interface EmployeeDao {
     Map getBranches();
     Map getDesignation();
-    Integer getEmployeeId();
+//    Integer getEmployeeId();
     Boolean insertEmployee(Employee employee);
     List<Employee> getEmployees();
     Boolean deleteEmployee(Employee employee);

@@ -4,10 +4,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
+
 /**
  * Created by ratnesh on 30/5/17.
  */
-@Component
+@Entity
+@Table(name = "employee")
 public class Employee {
 
     private String  firstName,lastName,email,gender,
@@ -57,6 +60,8 @@ public class Employee {
     public void setEmpId(Long empId) {
         this.empId = empId;
     }
+@Id
+@GeneratedValue(strategy= GenerationType.IDENTITY)
 
     private Long empId;
 

@@ -22,22 +22,22 @@ public class DesignationServiceImpl  implements  DesignationService{
 
     @Transactional
     public Boolean addDesignation(Designation designation) {
-        return designationDao.insertDesignation(designation);
+        return this.designationDao.insertDesignation(designation);
     }
     @Transactional
     public List<Designation> getAllDesignations() {
-        return designationDao.getDesignations();
+        return this.designationDao.getDesignations();
     }
     @Transactional
     public Boolean removeDesignation(Designation designation) {
-        return designationDao.deleteDesignation(designation);
+        return this.designationDao.deleteDesignation(designation);
     }
     @Transactional
     public Boolean editDesignation(Designation designation) {
-        return designationDao.updateDesignation(designation);
+        return this.designationDao.updateDesignation(designation);
     }
     @Transactional
     public Designation designationForUpdate(Designation designation) {
-        return designationDao.getDesignationForUpdate(designation);
+        return this.designationDao.getDesignationForUpdate(designation);
     }
 }

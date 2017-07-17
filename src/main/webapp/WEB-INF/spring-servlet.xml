@@ -8,6 +8,11 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+    <context:component-scan base-package="com.ratnesh.ems.*" />
+    <mvc:annotation-driven />
+    <mvc:resources mapping="/resource/**" location="/resource/"/>
+    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
+
 <!--Designation Dao and Servive wiring-->
     <bean class="com.ratnesh.ems.dao.DesignationDaoImpl" id="designationDao">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
@@ -15,24 +20,33 @@
     <bean class="com.ratnesh.ems.service.DesignationServiceImpl" id="designationService">
         <property name="designationDao" ref="designationDao"/>
     </bean>
-    <!--Designation Dao and Servive wiring-->
+    <!--Company Dao and Servive wiring-->
     <bean class="com.ratnesh.ems.dao.CompanyDaoImpl" id="companyDao">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
     <bean class="com.ratnesh.ems.service.CompanyServiceImpl" id="companyService">
         <property name="companyDao" ref="companyDao"/>
     </bean>
-    <bean class="com.ratnesh.ems.dao.EmployeeDaoImpl" id="employeeDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
-    </bean>
-
-
-    <bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+    <!--Salary Dao and Servive wiring-->
     <bean class="com.ratnesh.ems.dao.SalaryDaoImpl" id="salaryDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+    <bean class="com.ratnesh.ems.service.SalaryServiceImpl" id="salaryService">
+        <property name="salaryDao" ref="salaryDao"/>
+
+    </bean>
+
+    <bean class="com.ratnesh.ems.dao.EmployeeDaoImpl" id="employeeDao">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+    </bean>
+    <bean class="com.ratnesh.ems.service.EmployeeServiceImpl" id="employeeService">
+        <property name="employeeDao" ref="employeeDao"/>
+    </bean>
+
+    <!--<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -50,6 +64,8 @@
             <list>
                 <value>com.ratnesh.ems.model.Designation</value>
                 <value>com.ratnesh.ems.model.Branch</value>
+                <value>com.ratnesh.ems.model.Salary</value>
+                <value>com.ratnesh.ems.model.Employee</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -79,9 +95,4 @@
             <value>.jsp</value>
         </property>
     </bean>
-    <context:component-scan base-package="com.ratnesh.ems.*" />
-
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resource/**" location="/resource/"/>
-    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
 </beans>

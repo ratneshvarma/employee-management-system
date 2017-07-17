@@ -17,7 +17,7 @@ public class DesignationDaoImpl implements  DesignationDao{
         this.sessionFactory = sessionFactory;
     }
 
-    public Boolean insertDesignation(final Designation designation) {
+    public Boolean insertDesignation( Designation designation) {
         Session session=this.sessionFactory.getCurrentSession();
         session.save(designation);
         return true;

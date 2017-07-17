@@ -1,9 +1,11 @@
 package com.ratnesh.ems.service;
 
+import com.ratnesh.ems.dao.EmployeeDao;
 import com.ratnesh.ems.dao.EmployeeDaoImpl;
 import com.ratnesh.ems.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
@@ -17,19 +19,22 @@ import java.util.Random;
  */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    @Autowired
-    EmployeeDaoImpl employeeDao;
+    private EmployeeDao employeeDao;
+    public void setEmployeeDao(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
+    }
+@Transactional
     public Map branchList() {
         return employeeDao.getBranches();
     }
-
+    @Transactional
     public Map designationList() {
         return employeeDao.getDesignation();
     }
 
-    public Integer maxEmployeeId() {
-        return employeeDao.getEmployeeId();
-    }
+//    public Integer maxEmployeeId() {
+//        return employeeDao.getEmployeeId();
+//    }
 
     public Boolean employeeInsert(Employee employee) {
         return employeeDao.insertEmployee(employee);
@@ -60,19 +65,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return true;
     }
-
+    @Transactional
     public List<Employee> allEmployees() {
         return employeeDao.getEmployees();
     }
-
+    @Transactional
     public Boolean employeeDelete(Employee employee) {
         return employeeDao.deleteEmployee(employee);
     }
-
+    @Transactional
     public Employee getEmployeeForUpdate(Employee employee) {
         return employeeDao.getEmployeeForUpdate(employee);
     }
-
+    @Transactional
     public Boolean employeeUpdate(Employee employee) {
         return employeeDao.updateEmployee(employee);
     }
