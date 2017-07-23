@@ -4,6 +4,7 @@ import com.ratnesh.ems.dao.DesignationDao;
 import com.ratnesh.ems.dao.DesignationDaoImpl;
 import com.ratnesh.ems.model.Designation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.List;
  * Created by ratnesh on 8/7/17.
  */
 @Service
+@Qualifier("desig")
 public class DesignationServiceImpl  implements  DesignationService{
 
     private DesignationDao designationDao;

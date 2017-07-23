@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/designation")
 public class DesignationController {
     @Autowired(required=true)
-    @Qualifier(value="designationService")
     private DesignationService designationService;
 
     public void setDesignationService(DesignationService designationService) {

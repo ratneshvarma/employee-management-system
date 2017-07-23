@@ -23,7 +23,6 @@ import java.util.*;
 @RequestMapping("/employee")
 public class EmployeeController {
     @Autowired(required = true)
-    @Qualifier(value="employeeService")
     private EmployeeService employeeService;
     public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;

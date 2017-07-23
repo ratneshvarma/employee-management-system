@@ -29,7 +29,6 @@ public class SalaryController {
         this.salaryService = salaryService;
     }
     @Autowired(required=true)
-    @Qualifier(value="salaryService")
     private SalaryService salaryService;
 
     @RequestMapping(value = "/addSalary")
