@@ -4,6 +4,7 @@ import com.ratnesh.ems.model.Employee;
 import com.ratnesh.ems.model.Salary;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -13,13 +14,10 @@ import java.util.Map;
 /**
  * Created by ratnesh on 10/7/17.
  */
-@Repository
+@Repository("salaryDao")
 public class SalaryDaoImpl implements SalaryDao {
+    @Autowired
     private SessionFactory sessionFactory;
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     public Map getEmployeeList() {
         Session session = this.sessionFactory.getCurrentSession();
        List<Employee> employees=  session.createQuery("from Employee").list();

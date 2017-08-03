@@ -12,13 +12,10 @@ import java.util.List;
 /**
  * Created by ratnesh on 8/7/17.
  */
-@Service
+@Service("companyService")
 public class CompanyServiceImpl implements CompanyService {
 
-    public void setCompanyDao(CompanyDao companyDao) {
-        this.companyDao = companyDao;
-    }
-
+    @Autowired
     private CompanyDao companyDao;
     @Transactional
     public Boolean addBranch(Branch branch) {

@@ -19,13 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-    @Autowired(required=true)
-    @Qualifier(value="companyService")
-
-    public void setCompanyService(CompanyService companyService) {
-        this.companyService = companyService;
-    }
-
+    @Autowired
     private CompanyService companyService;
 
     @RequestMapping(value = "/addBranch")

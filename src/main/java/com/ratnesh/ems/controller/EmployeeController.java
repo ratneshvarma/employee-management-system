@@ -22,14 +22,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-    @Autowired(required = true)
-    @Qualifier(value="employeeService")
+    @Autowired
     private EmployeeService employeeService;
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-//    @Autowired
-//    Employee employee;
+
     @RequestMapping("/login")
     public ModelAndView test(){
         List employeeList = employeeService.allEmployees();

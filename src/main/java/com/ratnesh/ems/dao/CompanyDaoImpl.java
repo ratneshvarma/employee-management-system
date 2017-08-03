@@ -3,20 +3,17 @@ package com.ratnesh.ems.dao;
 import com.ratnesh.ems.model.Branch;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
  * Created by ratnesh on 8/7/17.
  */
-@Repository
+@Repository("companyDao")
 public class CompanyDaoImpl implements  CompanyDao{
+    @Autowired
     private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-    }
-
 
     public Boolean insertBranch(Branch branch) {
         Session session=this.sessionFactory.getCurrentSession();

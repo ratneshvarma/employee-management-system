@@ -17,13 +17,12 @@ import java.util.Random;
 /**
  * Created by ratnesh on 31/5/17.
  */
-@Service
+@Service("employeeService")
 public class EmployeeServiceImpl implements EmployeeService {
+    @Autowired
     private EmployeeDao employeeDao;
-    public void setEmployeeDao(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
-    }
-@Transactional
+
+    @Transactional
     public Map branchList() {
         return employeeDao.getBranches();
     }
@@ -31,11 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Map designationList() {
         return employeeDao.getDesignation();
     }
-
-//    public Integer maxEmployeeId() {
-//        return employeeDao.getEmployeeId();
-//    }
-
+    @Transactional
     public Boolean employeeInsert(Employee employee) {
         return employeeDao.insertEmployee(employee);
     }
@@ -77,8 +72,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeForUpdate(Employee employee) {
         return employeeDao.getEmployeeForUpdate(employee);
     }
-    @Transactional
+    @Transactional//(readOnly = true)
     public Boolean employeeUpdate(Employee employee) {
+        System.out.println(employee.getEmpId()+"Name:"+employee.getFirstName()+employee.getAge()+"id"+ employee.getBranchId()+employee.getDesignation() );
         return employeeDao.updateEmployee(employee);
     }
 }

@@ -3,20 +3,17 @@ package com.ratnesh.ems.dao;
 import com.ratnesh.ems.model.Designation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
  * Created by ratnesh on 8/7/17.
  */
-@Repository
+@Repository("designationDao")
 public class DesignationDaoImpl implements  DesignationDao{
+    @Autowired
     private SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory = sessionFactory;
-    }
-
     public Boolean insertDesignation( Designation designation) {
         Session session=this.sessionFactory.getCurrentSession();
         session.save(designation);

@@ -20,13 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/designation")
 public class DesignationController {
-    @Autowired(required=true)
-    @Qualifier(value="designationService")
+    @Autowired
     private DesignationService designationService;
-
-    public void setDesignationService(DesignationService designationService) {
-        this.designationService = designationService;
-    }
 
     @RequestMapping(value = "/addDesignation")
     public ModelAndView designationPage(){

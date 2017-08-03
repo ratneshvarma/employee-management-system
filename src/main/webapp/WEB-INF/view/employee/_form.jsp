@@ -1,16 +1,9 @@
 
-<%--<div class="form-group">--%>
-    <%--<label class="col-sm-3 control-label no-padding-right" for="empId"> Employee Id </label>--%>
-
-    <%--<div class="col-sm-9">--%>
-        <%--&lt;%&ndash;<form:input path="empId" readonly="true" type="text" id="empId"  />&ndash;%&gt;--%>
-
-    <%--</div>--%>
-<%--</div>--%>
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="firstName"> First Name </label>
 
     <div class="col-sm-9">
+        <form:hidden path="empId" />
         <form:input path="firstName" type="text" id="firstName" placeholder="xxxx"  />
     </div>
 </div>

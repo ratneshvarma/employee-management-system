@@ -12,13 +12,10 @@ import java.util.List;
 /**
  * Created by ratnesh on 8/7/17.
  */
-@Service
+@Service("designationService")
 public class DesignationServiceImpl  implements  DesignationService{
-
+    @Autowired
     private DesignationDao designationDao;
-    public void setDesignationDao(DesignationDao designationDao) {
-        this.designationDao = designationDao;
-    }
 
     @Transactional
     public Boolean addDesignation(Designation designation) {

@@ -25,11 +25,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/salary")
 public class SalaryController {
-    public void setSalaryService(SalaryService salaryService) {
-        this.salaryService = salaryService;
-    }
-    @Autowired(required=true)
-    @Qualifier(value="salaryService")
+    @Autowired
     private SalaryService salaryService;
 
     @RequestMapping(value = "/addSalary")

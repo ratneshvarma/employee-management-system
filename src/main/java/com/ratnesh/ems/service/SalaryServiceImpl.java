@@ -13,13 +13,10 @@ import java.util.Map;
 /**
  * Created by ratnesh on 10/7/17.
  */
-@Service
+@Service("salaryService")
 public class SalaryServiceImpl implements SalaryService {
 
-    public void setSalaryDao(SalaryDao salaryDao) {
-        this.salaryDao = salaryDao;
-    }
-
+   @Autowired
     private SalaryDao salaryDao;
 
     @Transactional

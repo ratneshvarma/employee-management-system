@@ -1,107 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+    <mvc:resources mapping="/resource/**" location="/resource/"/>
+    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
+    <mvc:annotation-driven />
+    <context:property-placeholder location="classpath:database.properties" />
+    <context:component-scan base-package="com.ratnesh.ems" />
 
-<!--Designation Dao and Servive wiring-->
-    <bean class="com.ratnesh.ems.dao.DesignationDaoImpl" id="designationDao">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    <bean class="com.ratnesh.ems.service.DesignationServiceImpl" id="designationService">
-        <property name="designationDao" ref="designationDao"/>
-    </bean>
-    <!--Company Dao and Servive wiring-->
-    <bean class="com.ratnesh.ems.dao.CompanyDaoImpl" id="companyDao">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-    <bean class="com.ratnesh.ems.service.CompanyServiceImpl" id="companyService">
-        <property name="companyDao" ref="companyDao"/>
-    </bean>
-    <!--Salary Dao and Servive wiring-->
-    <bean class="com.ratnesh.ems.dao.SalaryDaoImpl" id="salaryDao">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-    <bean class="com.ratnesh.ems.service.SalaryServiceImpl" id="salaryService">
-        <property name="salaryDao" ref="salaryDao"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000" />
     </bean>
 
-    <bean class="com.ratnesh.ems.dao.EmployeeDaoImpl" id="employeeDao">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
-    </bean>
-    <bean class="com.ratnesh.ems.service.EmployeeServiceImpl" id="employeeService">
-        <property name="employeeDao" ref="employeeDao"/>
-    </bean>
-
-    <!--<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
-
-
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/ems"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-
+    <bean id="jspViewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/view/" />
+        <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- Hibernate 4 SessionFactory Bean definition -->
-    <bean id="hibernate4AnnotatedSessionFactory"
-                class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${database.driver}" />
+        <property name="url" value="${database.url}" />
+        <property name="username" value="${database.user}" />
+        <property name="password" value="${database.password}" />
+    </bean>
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>com.ratnesh.ems.model.Designation</value>
                 <value>com.ratnesh.ems.model.Branch</value>
-                <value>com.ratnesh.ems.model.Salary</value>
+                <value>com.ratnesh.ems.model.Designation</value>
                 <value>com.ratnesh.ems.model.Employee</value>
+                <value>com.ratnesh.ems.model.Salary</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
             </props>
         </property>
     </bean>
-    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
-    </bean>
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
-
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
-        <property name="maxUploadSize" value="5000000" />
-    </bean>
-    <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/view/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
-    <!--<context:component-scan base-package="com.ratnesh.ems.service" />-->
-    <!--<context:component-scan base-package="com.ratnesh.ems.controller" />-->
-    <!--<context:component-scan base-package="com.ratnesh.ems.dao" />-->
-    <!--<context:component-scan base-package="com.ratnesh.ems.model" />-->
-    <context:component-scan base-package="com.ratnesh.ems.*"/>
-    <!--<context:component-scan base-package="com.ratnesh.ems">-->
-    <!--<context:include-filter type="aspectj" expression="com.ratnesh.ems.*" />-->
-    <!--</context:component-scan>-->
-
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resource/**" location="/resource/"/>
-    <mvc:resources mapping="/employee_pictures/**" location="/employee_pictures/"/>
-
 </beans>
