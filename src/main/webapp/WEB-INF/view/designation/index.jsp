@@ -65,13 +65,6 @@
                                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
-                                        <th>Designation ID</th>
                                         <th>Designation</th>
                                         <th class="hidden-480">Description</th>
 
@@ -84,20 +77,7 @@
 
 
                                     <c:forEach items="${designationList}" var="designation">
-
-
-
-                                        <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-
-                                            <td>
-                                                <a href="#">${designation.designationId}</a>
-                                            </td>
+                                    <tr>
                                             <td> ${designation.designation}</td>
                                             <td class="hidden-480">${designation.description}</td>
 

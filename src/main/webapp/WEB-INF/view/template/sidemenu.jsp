@@ -65,7 +65,7 @@
             <%--%>--%>
 
 
-            <li class="">
+            <li class="open" id="employee">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text">
@@ -77,19 +77,16 @@
 
                 <b class="arrow"></b>
 
-
-
-
                 <ul class="submenu">
-                    <li class="">
-                        <a href="/employee/addNewEmployee">
+                    <li class="" id="addNewEmployee">
+                        <a href="/employee/addNewEmployee" id="employeeAdd">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Entry
                         </a>
 
-                        <b class="arrow"></b>
+                        <b class="arrow" id="employeeList"></b>
                     </li>
-                    <li class="">
+                    <li class="open">
                         <a href="/employee/home">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
@@ -97,14 +94,7 @@
 
                         <b class="arrow"></b>
                     </li>
-                    <li class="">
-                        <a href="">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            ----
-                        </a>
 
-                        <b class="arrow"></b>
-                    </li>
 
 
                 </ul>
@@ -113,7 +103,7 @@
             <li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
-                    <span class="menu-text"> Company </span>
+                    <span class="menu-text"> Branch </span>
 
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
@@ -123,7 +113,7 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="/company/addBranch">
+                        <a href="/branch/addBranch">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Branch
                         </a>
@@ -132,7 +122,7 @@
                     </li>
 
                     <li class="">
-                        <a href="/company/viewAll">
+                        <a href="/branch/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
                         </a>
@@ -207,17 +197,6 @@
                 </ul>
 
             </li>
-
-
-
-
-
-
-
-
-
-
-
 
 
         </ul><!-- /.nav-list -->

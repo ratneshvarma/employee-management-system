@@ -1,5 +1,16 @@
+<%--<script language="JavaScript">--%>
+    <%--$(document).ready(function(){--%>
+        <%--var a= $(this);--%>
+        <%--$("#employeeAdd").click(function(){--%>
+            <%--alert("Hello:");--%>
 
-<div class="form-group">
+        <%--});--%>
+
+    <%--});--%>
+    <%----%>
+</script>
+
+    <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="firstName"> First Name </label>
 
     <div class="col-sm-9">
@@ -54,16 +65,14 @@
 </div>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="designation"> Designation </label>
+    <label class="col-sm-3 control-label no-padding-right" for="designationId"> Designation </label>
 
     <div class="col-sm-9">
-        <form:select path="designation" id="designation">
-            <form:options items="${designationList}"/>
-        </form:select>
-
-    </div>
+<form:select path="designation.designationId">
+        <form:options  items="${designationList}"/>
+</form:select>
 </div>
-
+</div>
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="doj"> Date of Joining </label>
 
@@ -105,7 +114,7 @@
     <label class="col-sm-3 control-label no-padding-right" for="branchId"> Branch </label>
 
     <div class="col-sm-9">
-        <form:select path="branchId" id="branchId">
+        <form:select path="branch.branchId" id="branchId">
             <form:options items="${branchList}"/>
         </form:select>
 

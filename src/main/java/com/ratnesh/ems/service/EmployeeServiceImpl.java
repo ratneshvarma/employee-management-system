@@ -74,7 +74,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     @Transactional//(readOnly = true)
     public Boolean employeeUpdate(Employee employee) {
-        System.out.println(employee.getEmpId()+"Name:"+employee.getFirstName()+employee.getAge()+"id"+ employee.getBranchId()+employee.getDesignation() );
-        return employeeDao.updateEmployee(employee);
+         return employeeDao.updateEmployee(employee);
     }
 }

@@ -19,11 +19,34 @@ public class Employee {
     private String gender;
     private String maritalStatus;
     private String dob;
-    private String designation;
+    @OneToOne
+    @JoinColumn(name="designationId")
+    private Designation designation;
+    public Designation getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(Designation designation) {
+        this.designation = designation;
+    }
+
     private String address;
     private String mobile;
     private int age;
-    private Long branchId;
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    //    private Long branchId;
+    @OneToOne
+    @JoinColumn(name="branchId")
+    private Branch branch;
+
     @Transient
     private MultipartFile photo;
     @Column(name = "photo")
@@ -39,6 +62,11 @@ public class Employee {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " "+ lastName;
     }
 
     public String getDoj() {
@@ -69,13 +97,13 @@ public class Employee {
     }
 
 
-    public Long getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(Long branchId) {
-        this.branchId = branchId;
-    }
+//    public Long getBranchId() {
+//        return branchId;
+//    }
+//
+//    public void setBranchId(Long branchId) {
+//        this.branchId = branchId;
+//    }
 
     public String getMobile() {
         return mobile;
@@ -133,15 +161,6 @@ public class Employee {
     public void setDob(String dob) {
         this.dob = dob;
     }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
     public String getAddress() {
         return address;
     }

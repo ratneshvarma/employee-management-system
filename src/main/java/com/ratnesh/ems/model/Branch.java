@@ -15,6 +15,11 @@ public class Branch {
     private String name;
     private String address;
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
     public Long getBranchId() {
         return branchId;
     }

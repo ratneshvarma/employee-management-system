@@ -17,7 +17,7 @@ import java.util.List;
  * Created by ratnesh on 8/7/17.
  */
 @Controller
-@RequestMapping("/company")
+@RequestMapping("/branch")
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
@@ -25,7 +25,7 @@ public class CompanyController {
     @RequestMapping(value = "/addBranch")
     public ModelAndView branchPage(){
 
-        return new ModelAndView("company/create","branch", new Branch());
+        return new ModelAndView("branch/create","branch", new Branch());
     }
 
     @RequestMapping(value = "/saveBranch")
@@ -41,13 +41,13 @@ public class CompanyController {
             message = "Insertion failed, please retry.";
 
         redirectAttributes.addFlashAttribute("message",message);
-        return new ModelAndView("redirect:/company/addBranch");
+        return new ModelAndView("redirect:/branch/addBranch");
     }
 
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
         List branchList = companyService.getAllBranches();
-        return new ModelAndView("company/index","branchList",branchList);
+        return new ModelAndView("branch/index","branchList",branchList);
     }
 
 
@@ -58,7 +58,7 @@ public class CompanyController {
         branch.setBranchId(branchId);
         branch= companyService.branchForUpdate(branch);
 
-        ModelAndView modelAndView = new ModelAndView("company/edit","branch", branch);
+        ModelAndView modelAndView = new ModelAndView("branch/edit","branch", branch);
 
         return modelAndView;
     }
@@ -75,7 +75,7 @@ public class CompanyController {
             message = "Updation failed, please retry.";
 
         redirectAttributes.addFlashAttribute("message",message);
-        return new ModelAndView("redirect:/company/viewAll");
+        return new ModelAndView("redirect:/branch/viewAll");
     }
     @RequestMapping("/delete")
     public ModelAndView delete(@RequestParam("id") long branchId, final RedirectAttributes redirectAttributes){
@@ -83,6 +83,6 @@ public class CompanyController {
         branch.setBranchId(branchId);
         companyService.removeBranch(branch);
         redirectAttributes.addFlashAttribute("message","Record deleted.");
-        return new ModelAndView("redirect:/company/viewAll");
+        return new ModelAndView("redirect:/branch/viewAll");
     }
 }

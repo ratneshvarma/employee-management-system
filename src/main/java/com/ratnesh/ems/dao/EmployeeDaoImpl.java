@@ -34,13 +34,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
         System.out.println("Branch List: "+ branchList);
         return branchList;
     }
-
     public Map getDesignation() {
         Session session = this.sessionFactory.getCurrentSession();
         List<Designation> designations=  session.createQuery("from Designation").list();
         Map<Integer, String> designationList = new HashMap<Integer, String>();
         for (Designation designation: designations){
-            designationList.put(designation.getDesignationId().intValue(), designation.getDescription());
+            designationList.put(designation.getDesignationId().intValue(), designation.getDesignation());
         }
         System.out.println("Designa List: "+ designationList);
         return designationList;

@@ -32,6 +32,11 @@ public class Designation {
         this.designation = designation;
     }
 
+    @Override
+    public String toString() {
+        return designation;
+    }
+
     public String getDescription() {
         return description;
     }

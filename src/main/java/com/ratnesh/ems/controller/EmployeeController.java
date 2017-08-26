@@ -41,7 +41,7 @@ public class EmployeeController {
        List genderList = new ArrayList();
         genderList.add("Male");
         genderList.add("Female");
-        genderList.add("Other");
+        genderList.add("Transgender");
 
         List<String> maritalList = new ArrayList<String>();
         maritalList.add("Married");
@@ -56,8 +56,6 @@ public class EmployeeController {
         modelAndView.addObject("maritalList",maritalList);
         modelAndView.addObject("branchList",branchList);
         modelAndView.addObject("designationList", designationList);
-//        modelAndView.addObject("maxEployeeId", employeeService.maxEmployeeId()+1 );
-
         return modelAndView;
     }
 
@@ -122,7 +120,6 @@ public class EmployeeController {
     @RequestMapping(value = "/updateEmployee",method=RequestMethod.POST)
     public ModelAndView updateEmployee(@RequestParam("photo") MultipartFile file, @ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes){
         boolean fileSaveFlag = employeeService.uploadImage(file, employee);
-
         String message = null;
         boolean updated  = employeeService.employeeUpdate(employee);
         if(updated)

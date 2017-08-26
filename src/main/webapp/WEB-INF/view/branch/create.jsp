@@ -18,7 +18,7 @@
                 </li>
 
 
-                <li class="active">Company</li>
+                <li class="active">Branch</li>
             </ul><!-- /.breadcrumb -->
 
 
@@ -42,7 +42,7 @@
                 <div class="col-xs-12">
 
                     <!-- PAGE CONTENT BEGINS -->
-         <form:form  modelAttribute="branch" class="form-horizontal"  action="/company/saveBranch" method="POST"  >
+         <form:form  modelAttribute="branch" class="form-horizontal"  action="/branch/saveBranch" method="POST"  >
             <%@include file="../template/_messages.jsp"%>
             <%@include file="_form.jsp"%>
           </form:form>

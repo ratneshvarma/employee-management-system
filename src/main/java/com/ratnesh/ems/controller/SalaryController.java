@@ -40,6 +40,7 @@ public class SalaryController {
 
     @RequestMapping(value = "/saveSalary")
     public ModelAndView salarySave(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
+        System.out.println("save sal");
         String message=null;
         boolean inserted  = salaryService.addSalary(salary);
 
