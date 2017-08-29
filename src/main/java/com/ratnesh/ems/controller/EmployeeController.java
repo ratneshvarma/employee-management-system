@@ -1,13 +1,12 @@
 package com.ratnesh.ems.controller;
 
 import com.ratnesh.ems.model.Employee;
+import com.ratnesh.ems.service.EmployeeService;
 import com.ratnesh.ems.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,11 +18,11 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/employee")
+//@SessionAttributes("employee")
 public class EmployeeController {
     @Autowired
-    EmployeeServiceImpl employeeService;
-    @Autowired
-    Employee employee;
+    private EmployeeService employeeService;
+
     @RequestMapping("/login")
     public ModelAndView test(){
         List employeeList = employeeService.allEmployees();
@@ -34,13 +33,18 @@ public class EmployeeController {
         List employeeList = employeeService.allEmployees();
         return new ModelAndView("employee/index","employeeList",employeeList);
     }
+    @RequestMapping("/viewAll")
+    public ModelAndView viewAll(){
+        List employeeList = employeeService.allEmployees();
+        return new ModelAndView("employee/index","employeeList",employeeList);
+    }
 
     @RequestMapping("/addNewEmployee")
     public ModelAndView add(){
        List genderList = new ArrayList();
         genderList.add("Male");
         genderList.add("Female");
-        genderList.add("Other");
+        genderList.add("Transgender");
 
         List<String> maritalList = new ArrayList<String>();
         maritalList.add("Married");
@@ -55,8 +59,6 @@ public class EmployeeController {
         modelAndView.addObject("maritalList",maritalList);
         modelAndView.addObject("branchList",branchList);
         modelAndView.addObject("designationList", designationList);
-        modelAndView.addObject("maxEployeeId", employeeService.maxEmployeeId()+1 );
-
         return modelAndView;
     }
 
@@ -121,7 +123,6 @@ public class EmployeeController {
     @RequestMapping(value = "/updateEmployee",method=RequestMethod.POST)
     public ModelAndView updateEmployee(@RequestParam("photo") MultipartFile file, @ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes){
         boolean fileSaveFlag = employeeService.uploadImage(file, employee);
-
         String message = null;
         boolean updated  = employeeService.employeeUpdate(employee);
         if(updated)

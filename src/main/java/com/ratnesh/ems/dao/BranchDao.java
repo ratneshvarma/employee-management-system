@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ratnesh on 8/7/17.
  */
-public interface CompanyDao {
+public interface BranchDao {
     Boolean insertBranch(Branch branch);
     List<Branch> getBranches();
     Boolean deleteBranch(Branch branch);

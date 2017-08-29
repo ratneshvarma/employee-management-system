@@ -12,7 +12,7 @@ import java.util.Map;
 public interface EmployeeService {
     Map branchList();
     Map designationList();
-    Integer maxEmployeeId();
+//    Integer maxEmployeeId();
     Boolean employeeInsert(Employee employee);
     Boolean uploadImage(MultipartFile multipartFile, Employee employee);
     List<Employee> allEmployees();

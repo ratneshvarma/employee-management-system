@@ -65,9 +65,9 @@
                                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                           Employee Id
-                                        </th>
+                                        <%--<th class="center">--%>
+                                           <%--Employee Id--%>
+                                        <%--</th>--%>
                                         <th>Employee Name</th>
                                         <th>Salary</th>
                                         <th class="hidden-480">Payment Month</th>
@@ -85,12 +85,12 @@
 
 
                                         <tr>
-                                            <td class="center">
-                                                    ${salary.empId}
-                                            </td>
+                                            <%--<td class="center">--%>
+                                                    <%--${salary.employee.empId}--%>
+                                            <%--</td>--%>
 
                                             <td>
-                                                <a href="#">${salary.employeeName}</a>
+                                                <a href="#">${salary.employee.firstName} ${salary.employee.lastName}</a>
                                             </td>
                                             <td> ${salary.salary}</td>
                                             <td class="hidden-480">${salary.paymentDate}</td>

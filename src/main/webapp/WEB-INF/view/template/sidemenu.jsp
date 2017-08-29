@@ -38,10 +38,8 @@
             </div>
         </div><!-- /.sidebar-shortcuts -->
 
-
-
         <ul class="nav nav-list">
-            <li class="">
+            <li class="" id="dashboard">
                 <a href="/employee/home">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
@@ -49,23 +47,7 @@
 
                 <b class="arrow"></b>
             </li>
-
-            <%--<% String url_requested =  request.getAttribute("javax.servlet.forward.request_uri").toString();--%>
-
-                <%--String nav_select_flag = null;--%>
-                <%--String nav_select_open= null;--%>
-                <%--System.out.println(url_requested);--%>
-                <%--if(url_requested.equals("/employee/addNewEmployee")){--%>
-                    <%--System.out.println("hello");--%>
-                    <%--nav_select_flag = "nav-show";--%>
-                    <%--nav_select_open= "open";--%>
-
-                <%--}--%>
-                <%--System.out.println(nav_select_flag);--%>
-            <%--%>--%>
-
-
-            <li class="">
+            <li class="" id="employee">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text">
@@ -77,43 +59,33 @@
 
                 <b class="arrow"></b>
 
-
-
-
                 <ul class="submenu">
-                    <li class="">
+                    <li class="" id="empNewEntry">
                         <a href="/employee/addNewEmployee">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Entry
                         </a>
 
-                        <b class="arrow"></b>
+                        <b class="arrow" id="employeeList"></b>
                     </li>
-                    <li class="">
-                        <a href="/employee/home">
+                    <li class="" id="empViewAll">
+                        <a href="/employee/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
                         </a>
 
                         <b class="arrow"></b>
                     </li>
-                    <li class="">
-                        <a href="">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            ----
-                        </a>
 
-                        <b class="arrow"></b>
-                    </li>
 
 
                 </ul>
             </li>
 
-            <li class="">
+            <li class="" id="branch">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
-                    <span class="menu-text"> Company </span>
+                    <span class="menu-text"> Branch </span>
 
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
@@ -122,8 +94,8 @@
                 <b class="arrow"></b>
 
                 <ul class="submenu">
-                    <li class="">
-                        <a href="/company/addBranch">
+                    <li class="" id="branchNewEntry" >
+                        <a href="/branch/addBranch">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Branch
                         </a>
@@ -131,8 +103,8 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
-                        <a href="/company/viewAll">
+                    <li class="" id="branchViewAll">
+                        <a href="/branch/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
                         </a>
@@ -143,7 +115,7 @@
 
             </li>
 
-            <li class="">
+            <li class="" id="salary">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Salary </span>
@@ -154,7 +126,7 @@
                 <b class="arrow"></b>
 
                 <ul class="submenu">
-                    <li class="">
+                    <li class="" id="salaryNewEntry">
                         <a href="/salary/addSalary">
                             <i class="menu-icon fa fa-caret-right"></i>
                            Add Salary
@@ -163,7 +135,7 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
+                    <li class="" id="salaryViewAll">
                         <a href="/salary/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
@@ -176,7 +148,7 @@
             </li>
 
 
-            <li class="">
+            <li class="" id="designation">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Designation </span>
@@ -187,7 +159,7 @@
                 <b class="arrow"></b>
 
                 <ul class="submenu">
-                    <li class="">
+                    <li class="" id="designationNewEntry">
                         <a href="/designation/addDesignation">
                             <i class="menu-icon fa fa-caret-right"></i>
                             New Designation
@@ -196,7 +168,7 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
+                    <li class="" id="designationViewAll">
                         <a href="/designation/viewAll">
                             <i class="menu-icon fa fa-caret-right"></i>
                             View All
@@ -207,17 +179,6 @@
                 </ul>
 
             </li>
-
-
-
-
-
-
-
-
-
-
-
 
 
         </ul><!-- /.nav-list -->

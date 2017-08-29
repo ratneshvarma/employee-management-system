@@ -5,8 +5,7 @@
 
     <div class="col-sm-9">
         <form:hidden path="salaryId" />
-        <%--<form:input path="employeeId" type="text"  id="employeeId"  />--%>
-        <form:select path="empId" id="empId">
+        <form:select path="employee.empId" id="empId">
             <form:options items="${employeeList}"/>
         </form:select>
 

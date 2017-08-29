@@ -1,16 +1,9 @@
 
-<div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="empId"> Employee Id </label>
-
-    <div class="col-sm-9">
-        <form:input path="empId" readonly="true" type="text" id="empId" value="${maxEployeeId}" />
-
-    </div>
-</div>
-<div class="form-group">
+    <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="firstName"> First Name </label>
 
     <div class="col-sm-9">
+        <form:hidden path="empId" />
         <form:input path="firstName" type="text" id="firstName" placeholder="xxxx"  />
     </div>
 </div>
@@ -61,16 +54,14 @@
 </div>
 
 <div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="designation"> Designation </label>
+    <label class="col-sm-3 control-label no-padding-right" for="designationId"> Designation </label>
 
     <div class="col-sm-9">
-        <form:select path="designation" id="designation">
-            <form:options items="${designationList}"/>
-        </form:select>
-
-    </div>
+<form:select path="designation.designationId">
+        <form:options  items="${designationList}"/>
+</form:select>
 </div>
-
+</div>
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="doj"> Date of Joining </label>
 
@@ -112,7 +103,7 @@
     <label class="col-sm-3 control-label no-padding-right" for="branchId"> Branch </label>
 
     <div class="col-sm-9">
-        <form:select path="branchId" id="branchId">
+        <form:select path="branch.branchId" id="branchId">
             <form:options items="${branchList}"/>
         </form:select>
 

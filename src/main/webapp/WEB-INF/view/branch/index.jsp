@@ -17,7 +17,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Company</a>
+                    <a href="#">Branch</a>
                 </li>
                 <li class="active">List and Action</li>
             </ul><!-- /.breadcrumb -->
@@ -66,13 +66,6 @@
                                 <table id="dynamic-table" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
-                                        <th>Branch ID</th>
                                         <th>Name</th>
                                         <th class="hidden-480">Address</th>
 
@@ -89,28 +82,18 @@
 
 
                                         <tr>
-                                            <td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>
-
-                                            <td>
-                                                <a href="#">${branch.branchId}</a>
-                                            </td>
                                             <td>${employee.firstName} ${branch.name}</td>
                                             <td class="hidden-480">${branch.address}</td>
 
                                             <td>
                                                 <div class="hidden-sm hidden-xs action-buttons">
 
-                                                    <a class="green" href="/company/update?id=${branch.branchId}">
+                                                    <a class="green" href="/branch/update?id=${branch.branchId}">
                                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                     </a>
                                                     <i ></i>
 
-                                                    <a class="red" href="/company/delete?id=${branch.branchId}">
+                                                    <a class="red" href="/branch/delete?id=${branch.branchId}">
                                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                                     </a>
                                                 </div>

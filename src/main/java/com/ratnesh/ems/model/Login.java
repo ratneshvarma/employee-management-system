@@ -2,11 +2,26 @@ package com.ratnesh.ems.model;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
 /**
  * Created by ratnesh on 25/5/17.
  */
-@Component
+//@Component
+@Entity
+@Table(name = "designation")
 public class Login {
+    public Long getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(Long loginId) {
+        this.loginId = loginId;
+    }
+    @Id
+    @Column(name="loginId")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long loginId;
     private String userName;
 
     public String getUserName() {

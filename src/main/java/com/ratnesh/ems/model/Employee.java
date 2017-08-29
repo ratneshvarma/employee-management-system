@@ -4,21 +4,57 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.*;
+
 /**
  * Created by ratnesh on 30/5/17.
  */
-@Component
+@Entity
+@Table(name = "employee")
 public class Employee {
 
-    private String  firstName,lastName,email,gender,
-                    maritalStatus,dob,designation,address;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String gender;
+    private String maritalStatus;
+    private String dob;
+    @OneToOne
+    @JoinColumn(name="designationId")
+    private Designation designation;
+    public Designation getDesignation() {
+        return designation;
+    }
 
+    public void setDesignation(Designation designation) {
+        this.designation = designation;
+    }
 
-
+    private String address;
     private String mobile;
     private int age;
-    private Long branchId;
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    //    private Long branchId;
+    @OneToOne
+    @JoinColumn(name="branchId")
+    private Branch branch;
+
+    @Transient
     private MultipartFile photo;
+    @Column(name = "photo")
+    private String imageName;
+    private String doj;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long empId;
 
     public String getImageName() {
         return imageName;
@@ -28,7 +64,10 @@ public class Employee {
         this.imageName = imageName;
     }
 
-    private String imageName;
+    @Override
+    public String toString() {
+        return firstName + " "+ lastName;
+    }
 
     public String getDoj() {
         return doj;
@@ -38,7 +77,6 @@ public class Employee {
         this.doj = doj;
     }
 
-    private String doj;
 
     public MultipartFile getPhoto() {
         return photo;
@@ -58,16 +96,14 @@ public class Employee {
         this.empId = empId;
     }
 
-    private Long empId;
 
-
-    public Long getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(Long branchId) {
-        this.branchId = branchId;
-    }
+//    public Long getBranchId() {
+//        return branchId;
+//    }
+//
+//    public void setBranchId(Long branchId) {
+//        this.branchId = branchId;
+//    }
 
     public String getMobile() {
         return mobile;
@@ -125,15 +161,6 @@ public class Employee {
     public void setDob(String dob) {
         this.dob = dob;
     }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
     public String getAddress() {
         return address;
     }

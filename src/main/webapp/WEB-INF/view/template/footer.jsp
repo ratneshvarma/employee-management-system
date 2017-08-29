@@ -21,3 +21,52 @@
         </div>
     </div>
 </div>
+<script language="JavaScript">
+	$(document).ready(function(){
+	var ur= document.URL.split("/");
+	var selectedUrl= ur[ur.length-2]+"/"+document.URL.split("/").pop();
+
+	if(selectedUrl=="employee/addNewEmployee"){
+				$("#employee").addClass("open");
+				$("#empNewEntry").addClass("open");
+	}
+	else if(selectedUrl=="employee/home"){
+		$("#dashboard").addClass("open");
+	}
+	else if(selectedUrl=="employee/viewAll"){
+		$("#employee").addClass("open");
+		$("#empViewAll").addClass("open");
+	}
+
+	else if(selectedUrl=="branch/addBranch"){
+		$("#branch").addClass("open");
+		$("#branchNewEntry").addClass("open");
+	}
+
+	else if(selectedUrl=="branch/viewAll"){
+		$("#branch").addClass("open");
+		$("#branchViewAll").addClass("open");
+	}
+
+	else if(selectedUrl=="salary/addSalary"){
+		$("#salary").addClass("open");
+		$("#salaryNewEntry").addClass("open");
+	}
+	else if(selectedUrl=="salary/viewAll"){
+		$("#salary").addClass("open");
+		$("#salaryViewAll").addClass("open");
+	}
+	else if(selectedUrl=="designation/addDesignation"){
+		$("#designation").addClass("open");
+		$("#designationNewEntry").addClass("open");
+	}
+	else if(selectedUrl=="designation/viewAll"){
+		$("#designation").addClass("open");
+		$("#designationViewAll").addClass("open");
+	}
+	});
+
+</script>
+
+
+

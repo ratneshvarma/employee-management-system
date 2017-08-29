@@ -3,9 +3,11 @@ package com.ratnesh.ems.controller;
 import com.ratnesh.ems.model.Designation;
 import com.ratnesh.ems.model.Salary;
 import com.ratnesh.ems.service.DesignationServiceImpl;
+import com.ratnesh.ems.service.SalaryService;
 import com.ratnesh.ems.service.SalaryServiceImpl;
 import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/salary")
 public class SalaryController {
-@Autowired
-SalaryServiceImpl salaryService;
+    @Autowired
+    private SalaryService salaryService;
 
     @RequestMapping(value = "/addSalary")
     public ModelAndView salaryPage(){
@@ -38,6 +40,7 @@ SalaryServiceImpl salaryService;
 
     @RequestMapping(value = "/saveSalary")
     public ModelAndView salarySave(@ModelAttribute("salary") Salary salary, RedirectAttributes redirectAttributes){
+        System.out.println("save sal");
         String message=null;
         boolean inserted  = salaryService.addSalary(salary);
 

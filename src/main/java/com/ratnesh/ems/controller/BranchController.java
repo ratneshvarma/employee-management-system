@@ -1,7 +1,7 @@
 package com.ratnesh.ems.controller;
 
 import com.ratnesh.ems.model.Branch;
-import com.ratnesh.ems.service.CompanyServiceImpl;
+import com.ratnesh.ems.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,31 +10,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by ratnesh on 8/7/17.
  */
 @Controller
-@RequestMapping("/company")
-public class CompanyController {
-@Autowired
-CompanyServiceImpl companyService;
+@RequestMapping("/branch")
+public class BranchController {
+    @Autowired
+    private BranchService branchService;
 
     @RequestMapping(value = "/addBranch")
     public ModelAndView branchPage(){
 
-        return new ModelAndView("company/create","branch", new Branch());
+        return new ModelAndView("branch/create","branch", new Branch());
     }
 
     @RequestMapping(value = "/saveBranch")
     public ModelAndView branchSave(@ModelAttribute("branch") Branch branch, RedirectAttributes redirectAttributes){
 
         String message=null;
-        boolean insterted  = companyService.addBranch(branch);
+        boolean insterted  = branchService.addBranch(branch);
 
         if(insterted)
             message = "Branch successfully added.";
@@ -43,13 +40,13 @@ CompanyServiceImpl companyService;
             message = "Insertion failed, please retry.";
 
         redirectAttributes.addFlashAttribute("message",message);
-        return new ModelAndView("redirect:/company/addBranch");
+        return new ModelAndView("redirect:/branch/addBranch");
     }
 
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
-        List branchList = companyService.getAllBranches();
-        return new ModelAndView("company/index","branchList",branchList);
+        List branchList = branchService.getAllBranches();
+        return new ModelAndView("branch/index","branchList",branchList);
     }
 
 
@@ -58,9 +55,9 @@ CompanyServiceImpl companyService;
     public ModelAndView update(@RequestParam("id") long branchId){
         Branch branch = new Branch();
         branch.setBranchId(branchId);
-        branch= companyService.branchForUpdate(branch);
+        branch= branchService.branchForUpdate(branch);
 
-        ModelAndView modelAndView = new ModelAndView("company/edit","branch", branch);
+        ModelAndView modelAndView = new ModelAndView("branch/edit","branch", branch);
 
         return modelAndView;
     }
@@ -69,7 +66,7 @@ CompanyServiceImpl companyService;
     public ModelAndView updateEmployee(@ModelAttribute("branch") Branch branch, RedirectAttributes redirectAttributes){
 
         String message = null;
-        boolean updated  = companyService.editBranch(branch);
+        boolean updated  = branchService.editBranch(branch);
         if(updated)
             message = "Branch updated.";
 
@@ -77,14 +74,14 @@ CompanyServiceImpl companyService;
             message = "Updation failed, please retry.";
 
         redirectAttributes.addFlashAttribute("message",message);
-        return new ModelAndView("redirect:/company/viewAll");
+        return new ModelAndView("redirect:/branch/viewAll");
     }
     @RequestMapping("/delete")
     public ModelAndView delete(@RequestParam("id") long branchId, final RedirectAttributes redirectAttributes){
         Branch branch = new Branch();
         branch.setBranchId(branchId);
-        companyService.removeBranch(branch);
+        branchService.removeBranch(branch);
         redirectAttributes.addFlashAttribute("message","Record deleted.");
-        return new ModelAndView("redirect:/company/viewAll");
+        return new ModelAndView("redirect:/branch/viewAll");
     }
 }
