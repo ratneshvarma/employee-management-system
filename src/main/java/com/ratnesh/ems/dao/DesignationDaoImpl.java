@@ -22,10 +22,6 @@ public class DesignationDaoImpl implements  DesignationDao{
     public List<Designation> getDesignations() {
         Session session = this.sessionFactory.getCurrentSession();
         List<Designation>designationList = session.createQuery("from Designation").list();
-//        for(Designation designation : designationList){
-//            System.out.println("Person List::"+designation);
-//        }
-
         return designationList;
 
     }

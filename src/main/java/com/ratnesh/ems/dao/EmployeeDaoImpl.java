@@ -31,7 +31,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         for (Branch branch: branches){
             branchList.put(branch.getBranchId().intValue(), branch.getName());
         }
-        System.out.println("Branch List: "+ branchList);
         return branchList;
     }
     public Map getDesignation() {
@@ -41,7 +40,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         for (Designation designation: designations){
             designationList.put(designation.getDesignationId().intValue(), designation.getDesignation());
         }
-        System.out.println("Designa List: "+ designationList);
         return designationList;
     }
 

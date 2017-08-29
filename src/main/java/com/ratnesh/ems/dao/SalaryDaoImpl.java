@@ -25,8 +25,7 @@ public class SalaryDaoImpl implements SalaryDao {
         for (Employee emp: employees){
             employeeList.put(emp.getEmpId().intValue()," ("+emp.getEmpId()+") "+ emp.getFirstName()+" "+ emp.getLastName());
         }
-        System.out.println("Employee List: "+ employeeList);
-        return employeeList;
+       return employeeList;
 
     }
 

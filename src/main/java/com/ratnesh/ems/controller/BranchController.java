@@ -1,9 +1,8 @@
 package com.ratnesh.ems.controller;
 
 import com.ratnesh.ems.model.Branch;
-import com.ratnesh.ems.service.CompanyService;
+import com.ratnesh.ems.service.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,9 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/branch")
-public class CompanyController {
+public class BranchController {
     @Autowired
-    private CompanyService companyService;
+    private BranchService branchService;
 
     @RequestMapping(value = "/addBranch")
     public ModelAndView branchPage(){
@@ -32,7 +31,7 @@ public class CompanyController {
     public ModelAndView branchSave(@ModelAttribute("branch") Branch branch, RedirectAttributes redirectAttributes){
 
         String message=null;
-        boolean insterted  = companyService.addBranch(branch);
+        boolean insterted  = branchService.addBranch(branch);
 
         if(insterted)
             message = "Branch successfully added.";
@@ -46,7 +45,7 @@ public class CompanyController {
 
     @RequestMapping("/viewAll")
     public ModelAndView dashboard(){
-        List branchList = companyService.getAllBranches();
+        List branchList = branchService.getAllBranches();
         return new ModelAndView("branch/index","branchList",branchList);
     }
 
@@ -56,7 +55,7 @@ public class CompanyController {
     public ModelAndView update(@RequestParam("id") long branchId){
         Branch branch = new Branch();
         branch.setBranchId(branchId);
-        branch= companyService.branchForUpdate(branch);
+        branch= branchService.branchForUpdate(branch);
 
         ModelAndView modelAndView = new ModelAndView("branch/edit","branch", branch);
 
@@ -67,7 +66,7 @@ public class CompanyController {
     public ModelAndView updateEmployee(@ModelAttribute("branch") Branch branch, RedirectAttributes redirectAttributes){
 
         String message = null;
-        boolean updated  = companyService.editBranch(branch);
+        boolean updated  = branchService.editBranch(branch);
         if(updated)
             message = "Branch updated.";
 
@@ -81,7 +80,7 @@ public class CompanyController {
     public ModelAndView delete(@RequestParam("id") long branchId, final RedirectAttributes redirectAttributes){
         Branch branch = new Branch();
         branch.setBranchId(branchId);
-        companyService.removeBranch(branch);
+        branchService.removeBranch(branch);
         redirectAttributes.addFlashAttribute("message","Record deleted.");
         return new ModelAndView("redirect:/branch/viewAll");
     }

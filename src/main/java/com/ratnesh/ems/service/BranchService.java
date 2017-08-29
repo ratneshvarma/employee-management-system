@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ratnesh on 8/7/17.
  */
-public interface CompanyService {
+public interface BranchService {
     Boolean addBranch(Branch branch);
     List<Branch> getAllBranches();
     Boolean removeBranch(Branch branch);

@@ -1,14 +1,3 @@
-<%--<script language="JavaScript">--%>
-    <%--$(document).ready(function(){--%>
-        <%--var a= $(this);--%>
-        <%--$("#employeeAdd").click(function(){--%>
-            <%--alert("Hello:");--%>
-
-        <%--});--%>
-
-    <%--});--%>
-    <%----%>
-</script>
 
     <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right" for="firstName"> First Name </label>

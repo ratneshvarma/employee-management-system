@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * Created by ratnesh on 8/7/17.
  */
-@Repository("companyDao")
-public class CompanyDaoImpl implements  CompanyDao{
+@Repository("branchDao")
+public class BranchDaoImpl implements BranchDao {
     @Autowired
     private SessionFactory sessionFactory;
 

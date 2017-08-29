@@ -49,6 +49,7 @@
                 <value>com.ratnesh.ems.model.Designation</value>
                 <value>com.ratnesh.ems.model.Employee</value>
                 <value>com.ratnesh.ems.model.Salary</value>
+                <value>com.ratnesh.ems.model.Login</value>
             </list>
         </property>
         <property name="hibernateProperties">
